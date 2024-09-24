@@ -15,12 +15,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Check out the repository
     - uses: actions/checkout@v4
 
-    - name: Composer (php-actions)
-      uses: php-actions/composer@v6
+    #- name: Composer (php-actions)
+    # uses: php-actions/composer@v6
+    #  with:
+    #    php_extensions: sockets pdo_pgsql
+
+    - name: Set up PHP with necessary extensions
+      uses: shivammathur/setup-php@v2
       with:
-        php_extensions: sockets pdo_pgsql
+        php-version: '8.0'  # Defina a versão correta do PHP, se necessário
+        extensions: sockets, pdo_pgsql
+
+    - name: Install dependencies with Composer
+      run: composer install
 
     - name: PHPCS
       run: composer run phpcs
