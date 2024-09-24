@@ -18,13 +18,16 @@ $channel->queue_declare($queue, auto_delete: false);
 $channel->queue_bind($queue, 'client_enrolled');
 $channel->basic_consume($queue, no_ack: true, callback: function (AMQPMessage $msg) {
     $properties = json_decode($msg->body, true);
+    //
+    $randomPassword = bin2hex(random_bytes(4));
+    //
     $student = R::dispense('students');
     $student->name = $properties['name'];
     $student->email = $properties['email'];
-    $student->password = password_hash('123456', PASSWORD_ARGON2ID);
+    $student->password = password_hash($randomPassword, PASSWORD_ARGON2ID);
     R::store($student);
 
-    sendMailTo($student);
+    sendMailTo($student, $randomPassword);
     echo 'E-mail enviado' . PHP_EOL;
 });
 

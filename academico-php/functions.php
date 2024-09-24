@@ -26,14 +26,14 @@ function rabbitMqConnection(): AMQPStreamConnection
     return $connection;
 }
 
-function sendMailTo(OODBBean $student): void
+function sendMailTo(OODBBean $student, $randomPassword): void
 {
     $mensagem = <<<FIM
     Olá, $student->name! Seu pagamento foi confirmado e sua matrícula foi criada com sucesso.
     Para acessar sua conta e começar a estudar conosco, acesse: http://localhost:4200/login.
     Seus dados de acesso são:
     E-mail: $student->email
-    Senha: 123456
+    Senha: $randomPassword
     
     Bons estudos!
     FIM;
