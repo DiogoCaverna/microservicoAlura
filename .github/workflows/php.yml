@@ -11,14 +11,11 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Check out the repository
-    - uses: actions/checkout@v4
-
-    
+      uses: actions/checkout@v4  # O 'uses' estava fora de lugar
 
     - name: Set up PHP with necessary extensions
       uses: shivammathur/setup-php@v2
@@ -29,6 +26,7 @@ jobs:
     - name: Install dependencies with Composer
       run: composer install
 
-    - name: PHPCS
+    - name: Run PHP Code Sniffer
       run: composer run phpcs
+
 
