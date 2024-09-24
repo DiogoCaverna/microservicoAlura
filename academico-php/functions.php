@@ -32,7 +32,7 @@ function sendMailTo(OODBBean $student, $randomPassword): void
     Olá, $student->name! Seu pagamento foi confirmado e sua matrícula foi criada com sucesso.
     Para acessar sua conta e começar a estudar conosco, acesse: http://localhost:4200/login.
     Seus dados de acesso são:
-    E-mail: $student->email
+    Usuário: $student->username
     Senha: $randomPassword
     
     Bons estudos!
