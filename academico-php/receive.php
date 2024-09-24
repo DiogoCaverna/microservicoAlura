@@ -24,6 +24,9 @@ $channel->basic_consume($queue, no_ack: true, callback: function (AMQPMessage $m
     $student = R::dispense('students');
     $student->name = $properties['name'];
     $student->email = $properties['email'];
+    //
+    $student->username = $properties['username'];
+    //
     $student->password = password_hash($randomPassword, PASSWORD_ARGON2ID);
     R::store($student);
 
