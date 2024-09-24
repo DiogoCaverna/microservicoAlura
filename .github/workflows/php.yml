@@ -18,10 +18,7 @@ jobs:
     - name: Check out the repository
     - uses: actions/checkout@v4
 
-    #- name: Composer (php-actions)
-    # uses: php-actions/composer@v6
-    #  with:
-    #    php_extensions: sockets pdo_pgsql
+    
 
     - name: Set up PHP with necessary extensions
       uses: shivammathur/setup-php@v2
